@@ -24,6 +24,6 @@ $Arguments = @"
 
     $CLIPath = "C:\Program Files\HandBrake\HandBrakeCLI.exe"
 
-    Start-Process $CLIPath -ArgumentList $Arguments
-
+    cmd /c "'$CLIPath' $Arguments"
+#Start-Job -ScriptBlock {Start-Process -FilePath 'C:\Program Files\HandBrake\HandBrakeCLI.exe' -ArgumentList '-i "C:\Media\GREEN BOOK" -o "C:\Green Book.mp4" --main-feature' -Wait} -Name HandBrake
 }
