@@ -25,6 +25,5 @@ $Arguments = @"
     $CLIPath = "C:\Program Files\HandBrake\HandBrakeCLI.exe"
 
 Start-Job -ScriptBlock {param($Arguments,$CLIPath) Start-Process -FilePath $CLIPath -ArgumentList $Arguments -Wait} -Name HandBrake -ArgumentList $Arguments,$CLIPath
-$Job = Get-Job -Name HandBrake
-Return $Job
+
 }
