@@ -1,15 +1,13 @@
 <#
 .SYNOPSIS
-Short description
+Function to programmatically convert ISO video files into mp4
 
 .DESCRIPTION
-Long description
+Function to programmatically convert ISO video files into mp4 using Handbrake CLI
 
 .EXAMPLE
-An example
+Convert-DVD -inputDir C:\Media\CREED\CREED.ISO -outputDir C:\Media\CREED\Creed.mp4
 
-.NOTES
-General notes
 #>
 
 Function Convert-DVD {
