@@ -7,8 +7,9 @@ $inputDir = $DVDRom.DeviceID + "\"
 $output = "$ENV:USERPROFILE\Downloads\" + $FileName
 
 #Define arguements for handbrake CLI, provide any custom specs here
+#Preset: Roku 1080p30 Surround
 $Arguments = @"
--i $inputDir -o $output --main-feature
+-i $inputDir -o $output --main-feature --preset="Roku 1080p30 Surround"
 "@
 $CLIPath = "C:\Program Files\HandBrake\HandBrakeCLI.exe"
 If (!(Get-ChildItem -Path $CLIPath)){Throw "Cannot find Handbrake CLI file"}
