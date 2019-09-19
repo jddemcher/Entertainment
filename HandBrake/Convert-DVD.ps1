@@ -54,4 +54,4 @@ $DiskRecorder = New-Object -ComObject IMAPI2.MsftDiscRecorder2
 $DiskRecorder.InitializeDiscRecorder($DiskMaster)
 $DiskRecorder.EjectMedia()
 
-Start-ScheduledTask -TaskName 'Check-DVDRom'
+Get-ScheduledTask -TaskName 'Check-DVDRom' | Start-ScheduledTask
