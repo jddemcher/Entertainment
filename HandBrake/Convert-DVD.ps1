@@ -6,6 +6,7 @@
 #Find DVD drive
 $DVDRom = Get-CimInstance -ClassName win32_logicaldisk | Where-Object { $_.DriveType -eq 5 }
 $Title = $DVDRom.VolumeName
+$Title = $Title -replace '[^\p{L}\p{Nd}/_]', ''
 If (!($Title)){Throw "DVD drive is empty"}
 $FileName = $Title + ".mp4"
 $inputDir = $DVDRom.DeviceID + "\"
