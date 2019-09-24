@@ -2,6 +2,9 @@
 #This script will convert whatever is currently inserted into the DVD ROM drive using a built in Handbrake preset,
 #and then copy the output file to an internal NAS directory that is used by a Plex Media Server
 ###
+Param (
+    [string]$DestinationDirectory
+)
 
 #Find DVD drive
 $DVDRom = Get-CimInstance -ClassName win32_logicaldisk | Where-Object { $_.DriveType -eq 5 }
@@ -27,7 +30,7 @@ Start-Job -ScriptBlock { param($Arguments, $CLIPath) Start-Process -FilePath $CL
 Get-Job | Wait-Job
 
 #Upload file to the NAS directory
-$NAS = "\\10.5.0.200\media\Movie Library\"
+$NAS = $DestinationDirectory
 $Destination = "$NAS" + "$Title"
 
 If (!(Test-Path -Path $Destination)) {
