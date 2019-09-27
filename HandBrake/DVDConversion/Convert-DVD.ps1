@@ -1,6 +1,5 @@
 ###
-#This script will convert whatever is currently inserted into the DVD ROM drive using a built in Handbrake preset,
-#and then copy the output file to an internal NAS directory that is used by a Plex Media Server
+#This script will convert whatever is currently inserted into the DVD ROM drive using a built in Handbrake preset
 ###
 Param (
     [string]$DestinationDirectory
@@ -13,7 +12,7 @@ $Title = $Title -replace '[^\p{L}\p{Nd}/_]', ''
 If (!($Title)){Throw "DVD drive is empty"}
 $FileName = $Title + ".mp4"
 $inputDir = $DVDRom.DeviceID + "\"
-$output = "$ENV:USERPROFILE\Downloads\" + $FileName
+$output = "$DestinationDirectory\" + $FileName
 
 #Define arguements for handbrake CLI, provide any custom specs here
 #Preset: Roku 1080p30 Surround
@@ -28,29 +27,6 @@ Start-Job -ScriptBlock { param($Arguments, $CLIPath) Start-Process -FilePath $CL
 
 #wait for job to complete
 Get-Job | Wait-Job
-
-#Upload file to the NAS directory
-$NAS = $DestinationDirectory
-$Destination = "$NAS" + "$Title"
-
-If (!(Test-Path -Path $Destination)) {
-    New-Item -ItemType Directory -Path $NAS -Name $Title | Out-Null
-}
-
-If (Get-ChildItem -Path $output){
-Write-Output "Copying $output to $Destination..."
-Copy-Item -Path $output -Destination $Destination -Force
-}
-Else {
-    Throw "Handbrake failed to produce an output file"
-}
-
-If (Get-ChildItem -Path $Destination) {
-    Remove-Item -Path $output -Force
-}
-else {
-    Throw "$Output was not copied to the NAS folder"
-}
 
 #Eject media
 $Diskmaster = New-Object -ComObject IMAPI2.MsftDiscMaster2

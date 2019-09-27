@@ -1,6 +1,6 @@
 Param (
-[string]$RootPath = "$ENV:USERPROFILE\Desktop",
-[string]$ContentDir = "\\10.5.0.200\media\Movie Library\"
+[string]$RootPath = "$ENV:USERPROFILE\Desktop", #path where you downloaded this zip package
+[string]$ContentDir = "$ENV:USERPROFILE\Desktop"
 )
 
 $HomeFolder = "C:\ProgramData\CustomScripts"
@@ -10,6 +10,8 @@ If (!(Test-Path -Path $HomeFolder)){
 
 $Scripts = Get-ChildItem -Path $RootPath -Recurse
 Copy-Item -Path $Scripts -Destination $HomeFolder -Force
+
+powershell.exe -File "$HomeFolder\PreReqs.ps1"
 
 $CheckScript = "$HomeFolder\Check-DVDRom.ps1"
 $CheckParams = "-File '$CheckScript'"
