@@ -1,6 +1,6 @@
 Param (
-[string]$RootPath = "$ENV:USERPROFILE\Desktop", #path where you downloaded this zip package
-[string]$ContentDir = "$ENV:USERPROFILE\Desktop"
+[string]$RootPath = "C:\Users\baby yoda\Desktop\Entertainment-master\Entertainment-master\HandBrake\DVDConversion", #path where you downloaded this zip package
+[string]$ContentDir = "C:\Users\baby yoda\Desktop\Entertainment-master\Entertainment-master\HandBrake\DVDConversion"
 )
 
 $HomeFolder = "C:\ProgramData\CustomScripts"
