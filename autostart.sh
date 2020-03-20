@@ -1,16 +1,21 @@
 #! /bin/bash
 #array of games
 declare -a GAMES
-GAMES[0]="dkong.zip"
-GAMES[1]="frogger.zip"
-GAMES[2]="galaga.zip"
-GAMES[3]="joust.zip"
-GAMES[4]="mspacman.zip"
-GAMES[5]="pacman.zip"
-GAMES[6]="mario.zip"
-GAMES[7]="qbert.zip"
-GAMES[8]="contra.zip"
-GAMES[9]="asteroid.zip"
+#GAMES[0]="dkong.zip"
+#GAMES[1]="frogger.zip"
+#GAMES[2]="galaga.zip"
+#GAMES[3]="joust.zip"
+#GAMES[4]="mspacman.zip"
+#GAMES[5]="pacman.zip"
+#GAMES[6]="mario.zip"
+#GAMES[7]="qbert.zip"
+#GAMES[8]="contra.zip"
+#GAMES[9]="asteroid.zip"
+
+for file in /home/pi/RetroPie/roms/mame-libretro/*.zip
+do
+    GAMES=("${GAMES[@]}" "${file##*/}")
+done
 
 #random game selection
 play=${GAMES[$RANDOM % ${#GAMES[@]} ]}
